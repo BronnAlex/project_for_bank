@@ -1,6 +1,13 @@
 # -*- coding: utf-8 -*-
 from typing import Any, Iterable, Union
 
+input_list_for_processing = [
+    {"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},
+    {"id": 939719570, "state": "EXECUTED", "date": "2018-06-30T02:08:58.425572"},
+    {"id": 594226727, "state": "CANCELED", "date": "2018-09-12T21:27:25.241689"},
+    {"id": 615064591, "state": "CANCELED", "date": "2018-10-14T08:21:33.419441"},
+]
+
 
 def filter_by_state(our_list: Iterable[dict[str, Any]], state: Union[str] = "EXECUTED") -> list:
     """Функция возвращает новый список словарей, содержащий только те словари,
@@ -12,13 +19,16 @@ def filter_by_state(our_list: Iterable[dict[str, Any]], state: Union[str] = "EXE
     return new_list_dicts
 
 
-list_filter_by_state = [
-    {"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},
-    {"id": 939719570, "state": "EXECUTED", "date": "2018-06-30T02:08:58.425572"},
-    {"id": 594226727, "state": "CANCELED", "date": "2018-09-12T21:27:25.241689"},
-    {"id": 615064591, "state": "CANCELED", "date": "2018-10-14T08:21:33.419441"},
-]
+def sort_by_date(input_list: Iterable[dict[str, Any]], date: Union[bool] = True) -> list:
+    """Функция, которая принимает список словарей и необязательный параметр, сортировки (по умолчанию — убывание).
+    Возвращать новый список, отсортированный по дате 'date'"""
+    sorted_date = sorted(input_list, key=lambda x: x["date"], reverse=date)
+    return sorted_date
+
 
 if __name__ == "__main__":
-    result_state = filter_by_state(list_filter_by_state)
+    result_state = filter_by_state(input_list_for_processing)
     print(result_state)
+
+    result_sort_date = sort_by_date(input_list_for_processing)
+    print(result_sort_date)
