@@ -33,7 +33,7 @@ def get_date(current_date: Any) -> Any:
 
 
 if __name__ == "__main__":
-    user_input_card = "Maestro 7000792289606361"
+    user_input_card = "47700079228960636115"
     result_mask_card = mask_account_card(user_input_card)
     print(result_mask_card)
 

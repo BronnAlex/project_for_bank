@@ -35,6 +35,6 @@ if __name__ == "__main__":
     result_number_card = get_mask_card_number(user_input_number_card)
     print(result_number_card)
 
-    account = "oebfdvlirncadprsdl23"
+    account = "47700079228960636115"
     res = get_mask_account(account)
     print(res)
