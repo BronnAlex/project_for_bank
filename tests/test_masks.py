@@ -29,3 +29,11 @@ def test_get_mask_card_number(value, expected):
 def test_get_mask_account(value, expected):
     assert get_mask_account(value) == expected
 
+
+def test_get_mask_card_number_invalid_alpha():
+    with pytest.raises(TypeError):
+        assert get_mask_card_number('temnakdboe12sxgv')
+
+def test_get_mask_account_invalid_alpha():
+    with pytest.raises(TypeError):
+        assert get_mask_account('oebfdvlirncadprsdl23')
