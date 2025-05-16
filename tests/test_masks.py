@@ -1,0 +1,19 @@
+import pytest
+from src.masks import get_mask_card_number, get_mask_account
+
+# @pytest.fixture
+# def card_number():
+#     return ["7000792289606361", "7111792289606123", "7123792289606789"]
+
+@pytest.mark.parametrize("value, expected",
+                         [("7000792289606361", "7000 79** **** 6361" ),
+                          ("7111792289606123", "7111 79** **** 6123"),
+                          ("7123792289606789", "7123 79** **** 6789"),
+                          ("1", "Некорректный номер карты"),
+                          ("70007922896063610000000", "Некорректный номер карты"),
+                          ("", "Некорректный номер карты")
+                          ])
+def test_get_mask_card_number(value, expected):
+    assert get_mask_card_number(value) == expected
+
+# XXXX XX** **** XXXX
