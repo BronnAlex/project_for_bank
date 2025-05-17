@@ -17,7 +17,7 @@ def mask_account_card(account_card: Any) -> Any:
         return account_card[0:-16] + current_card
 
     elif len(card_string) == 20:
-        current_account = f'{account_card[0:4]} {mask_account(card_string)}'
+        current_account = f"{account_card[0:4]} {mask_account(card_string)}"
 
         return current_account
     return "Неверно введены данные"
