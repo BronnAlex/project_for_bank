@@ -1,5 +1,5 @@
 import pytest
-from src.widget import mask_account_card
+from src.widget import mask_account_card, get_date
 
 
 def test_mask_account_card():
@@ -15,3 +15,9 @@ def test_mask_account_card():
                          ])
 def test_mask_account_card_params(value, expected):
     assert mask_account_card(value) == expected
+
+
+def test_get_date():
+    assert get_date("2024-03-11T02:26:18.671407") == "11.03.2024"
+    assert get_date("2025.05.13") == "13.05.2025"
+    assert get_date('') == "Введите дату"

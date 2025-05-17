@@ -25,11 +25,13 @@ def mask_account_card(account_card: Any) -> Any:
 
 def get_date(current_date: Any) -> Any:
     """Функция, принимающая дату и возвращающая её в нужном формате"""
-    repl_1 = current_date.replace("-", ".")
-    repl_2 = repl_1.replace("-", ".")
-    take_date = repl_2[:10]
-    our_date = ".".join(reversed(take_date.split(".")))
-    return our_date
+    if current_date:
+        repl_1 = current_date.replace("-", ".")
+        repl_2 = repl_1.replace("-", ".")
+        take_date = repl_2[:10]
+        our_date = ".".join(reversed(take_date.split(".")))
+        return our_date
+    return "Введите дату"
 
 
 if __name__ == "__main__":
