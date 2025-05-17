@@ -17,7 +17,7 @@ def mask_account_card(account_card: Any) -> Any:
         return account_card[0:-16] + current_card
 
     elif len(card_string) == 20:
-        current_account = f'{account_card[0:4]} {mask_account(card_string)}'
+        current_account = f"{account_card[0:4]} {mask_account(card_string)}"
 
         return current_account
     return "Неверно введены данные"
@@ -25,15 +25,17 @@ def mask_account_card(account_card: Any) -> Any:
 
 def get_date(current_date: Any) -> Any:
     """Функция, принимающая дату и возвращающая её в нужном формате"""
-    repl_1 = current_date.replace("-", ".")
-    repl_2 = repl_1.replace("-", ".")
-    take_date = repl_2[:10]
-    our_date = ".".join(reversed(take_date.split(".")))
-    return our_date
+    if current_date:
+        repl_1 = current_date.replace("-", ".")
+        repl_2 = repl_1.replace("-", ".")
+        take_date = repl_2[:10]
+        our_date = ".".join(reversed(take_date.split(".")))
+        return our_date
+    return "Введите дату"
 
 
 if __name__ == "__main__":
-    user_input_card = "Maestro 7000792289606361"
+    user_input_card = "47700079228960636115"
     result_mask_card = mask_account_card(user_input_card)
     print(result_mask_card)
 
