@@ -1,7 +1,6 @@
-# black tests/test_generators.py
-
 import pytest
-from src.generators import filter_by_currency, transaction_descriptions, card_number_generator
+
+from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
 
 transactions = [
     {
@@ -212,25 +211,15 @@ def test_filter_by_currency(list_dicts, value, expected):
                 "Перевод с карты на карту",
                 "Перевод организации",
             ],
-
         ),
-        ([{}], ["Нет значения"])
+        ([{}], ["Нет значения"]),
     ],
 )
 def test_transaction_descriptions(value_transaction, expected):
     assert list(transaction_descriptions(value_transaction)) == expected
 
-# @pytest.fixture
-# def value_stop():
-#     return 3
-# @pytest.mark.parametrize("value_start, expected",
-#                          [
-#                              (1, ['0000 0000 0000 0001', "0000 0000 0000 0002", "0000 0000 0000 0003"]),
-#
-#                           ]
-#                          )
 
 def test_card_number_generator():
-    assert list(card_number_generator(1, 3)) == ['0000 0000 0000 0001', "0000 0000 0000 0002", "0000 0000 0000 0003"]
-    assert list(card_number_generator(3, 5)) == ['0000 0000 0000 0003', "0000 0000 0000 0004", "0000 0000 0000 0005"]
-    assert list(card_number_generator(-3, -1)) == ['0000 0000 0000 0001', "0000 0000 0000 0002", "0000 0000 0000 0003"]
+    assert list(card_number_generator(1, 3)) == ["0000 0000 0000 0001", "0000 0000 0000 0002", "0000 0000 0000 0003"]
+    assert list(card_number_generator(3, 5)) == ["0000 0000 0000 0003", "0000 0000 0000 0004", "0000 0000 0000 0005"]
+    assert list(card_number_generator(-3, -1)) == ["0000 0000 0000 0001", "0000 0000 0000 0002", "0000 0000 0000 0003"]
