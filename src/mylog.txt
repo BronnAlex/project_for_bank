@@ -1,0 +1,4 @@
+my_function error: необходимо числовое значение, а не строковое. Inputs: ('5', 2)my_function error: my_function() missing 1 required positional argument: 'y'. Inputs: (123,), {}
+my_function error: my_function() missing 1 required positional argument: 'y'. Inputs: (123,), {}
+my_function error: my_function() missing 1 required positional argument: 'y'. Inputs: (123,), {}
+my_function error: unsupported operand type(s) for +: 'int' and 'str'. Inputs: (123, '5'), {}
