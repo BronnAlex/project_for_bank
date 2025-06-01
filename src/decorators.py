@@ -1,39 +1,34 @@
-# Напишите декоратор log
-# , который будет автоматически логировать начало и конец выполнения функции, а также ее результаты или возникшие ошибки.
-# Декоратор должен принимать необязательный аргумент filename
-# который определяет, куда будут записываться логи (в файл или в консоль):
-# Если filename задан, логи записываются в указанный файл.
-# Если filename не задан, логи выводятся в консоль.
-# Логирование должно включать:
-# Имя функции и результат выполнения при успешной операции.
-# Имя функции, тип возникшей ошибки и входные параметры, если выполнение функции привело к ошибке.
-from logging import exception
+from functools import wraps
 
 
-def log(filename=""):
-    def my_decorator(func):
-        def wrapper(*args):
+def log(filename):
+    """Декоратор для логирования функций и вывода результатов в консоль или файл и
+    принимающий на вход необязательный аргумент filename"""
 
+    def wrapper(func):
+        @wraps(func)
+        def inner(*args, **kwargs):
             try:
-                result = func(*args)
-                if filename != "mylog.txt":
-                    print(f"{func.__name__} ok")
-                elif filename == "mylog.txt":
-                    with open(filename, "w", encoding='utf-8') as file:
-                        file.write(f"{func.__name__} ok")
-                return result
-            except TypeError:
-                error = f'необходимо числовое значение, а не строковое'
-                if filename == "mylog.txt":
-                    with open(filename, "w", encoding='utf-8') as file:
-                        file.write(f"{func.__name__} error: {error}. Inputs: {args}")
+                result = func(*args, **kwargs)
+
+            except Exception as error:
+                if filename:
+                    with open(filename, "a", encoding="utf-8") as file:
+                        file.write(f"{func.__name__} error: {error}. Inputs: {args}, {kwargs}\n")
                 else:
-                    print(f"{func.__name__} error: {error}. Inputs: {args}")
-            return TypeError("Введите числовое значение")
+                    print(f"{func.__name__} error: {error}. Inputs: {args}, {kwargs}")
 
-        return wrapper
+            else:
+                if filename:
+                    with open(filename, "a", encoding="utf-8") as file:
+                        file.write(f"{func.__name__} ok\n")
+                else:
+                    print(f"{func.__name__} ok")
+                return result
 
-    return my_decorator
+        return inner
+
+    return wrapper
 
 
 @log(filename="mylog.txt")
@@ -41,4 +36,4 @@ def my_function(x, y):
     return x + y
 
 
-print(my_function(5, 2))
+print(my_function(123, '5'))
