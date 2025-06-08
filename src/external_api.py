@@ -1,8 +1,9 @@
 import os
-from typing import Any, Dict, Optional
-from src.utils import operation_bank_data_json
+
 import requests
 from dotenv import load_dotenv
+
+from src.utils import operation_bank_data_json
 
 load_dotenv()
 API_KEY = os.getenv("API_KEY")
@@ -33,6 +34,6 @@ def get_transaction_amount_into_rub(transaction):
 if __name__ == "__main__":
     file_json = "operations.json"
     input_dict_currency = operation_bank_data_json(file_json)
-    result= get_transaction_amount_into_rub(input_dict_currency[0])
+    result = get_transaction_amount_into_rub(input_dict_currency[0])
 
     print(result)
