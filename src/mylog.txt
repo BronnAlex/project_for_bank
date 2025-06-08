@@ -2,3 +2,5 @@ my_function error: необходимо числовое значение, а н
 my_function error: my_function() missing 1 required positional argument: 'y'. Inputs: (123,), {}
 my_function error: my_function() missing 1 required positional argument: 'y'. Inputs: (123,), {}
 my_function error: unsupported operand type(s) for +: 'int' and 'str'. Inputs: (123, '5'), {}
+my_functions ok
+my_functions ok
