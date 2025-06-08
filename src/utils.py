@@ -1,7 +1,16 @@
 import json
 import os
+from site import abs_paths
 
-def operation_bank_data_json(path_to_file):
+
+def operation_bank_data_json(file_json):
+    """ Функция, которая принимает на вход путь до JSON-файла
+    и возвращает список словарей с данными о финансовых транзакциях"""
+    # текущая директория
+    current_dir = os.getcwd()
+    # Получаем путь к родительской директории
+    parent_dir = os.path.dirname(current_dir)
+    path_to_file = os.path.join(parent_dir + "\\data\\" + file_json)
     try:
         with open(path_to_file, "r", encoding='utf-8') as file:
             try:
@@ -16,13 +25,7 @@ def operation_bank_data_json(path_to_file):
 
 
 
-
-
 if __name__ == "__main__":
-    file_json = "operations.json"
-    # текущая директория
-    current_dir = os.getcwd()
-    # Получаем путь к родительской директории
-    parent_dir = os.path.dirname(current_dir)
-    result = operation_bank_data_json(parent_dir+"\\data\\"+file_json)
+
+    result = operation_bank_data_json("operations.json")
     print(result)
