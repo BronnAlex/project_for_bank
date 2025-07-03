@@ -1,5 +1,3 @@
-# import src.masks as mk
-# print(mk.get_mask_account("73654108430135874305"))
 from collections.abc import Iterable
 
 import src.category_bank_operation as operat
@@ -138,4 +136,5 @@ def main():
     sort_current_dict_currency()
 
 
-main()
+if __name__ == "__main__":
+    main()
