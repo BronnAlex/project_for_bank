@@ -1,7 +1,7 @@
 import re
 from collections import Counter
 
-from generators import transactions
+from src.generators import transactions
 
 
 def process_bank_search(data: list[dict], search: str) -> list[dict]:

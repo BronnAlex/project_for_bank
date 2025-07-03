@@ -4,3 +4,5 @@ my_function error: my_function() missing 1 required positional argument: 'y'. In
 my_function error: unsupported operand type(s) for +: 'int' and 'str'. Inputs: (123, '5'), {}
 my_functions ok
 my_functions ok
+my_function error: unsupported operand type(s) for +: 'int' and 'str'. Inputs: (123, '5'), {}
+my_function error: unsupported operand type(s) for +: 'int' and 'str'. Inputs: (123, '5'), {}
