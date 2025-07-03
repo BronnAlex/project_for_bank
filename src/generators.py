@@ -58,22 +58,12 @@ def filter_by_currency(transaction_list: list[dict[str, object]], current_value:
             yield item
 
 
-usd_transactions = filter_by_currency(transactions, "usd")
-for _ in range(2):
-    print(next(usd_transactions, {}))
-
-
 def transaction_descriptions(transaction_list: list[dict[str, object]]) -> Iterator[object]:
     """Функция-генератор, который принимает список словарей с транзакциями
     и возвращает описание каждой операции по очереди"""
 
     for item in transaction_list:
         yield item.get("description", "Нет значения")
-
-
-descriptions = transaction_descriptions(transactions)
-for _ in range(5):
-    print(next(descriptions))
 
 
 def card_number_generator(start: int, stop: int) -> Iterator[str]:
@@ -91,5 +81,14 @@ def card_number_generator(start: int, stop: int) -> Iterator[str]:
         yield number_card_format
 
 
-for card_number in card_number_generator(1, 5):
-    print(card_number)
+if __name__ == "__main__":
+    usd_transactions = filter_by_currency(transactions, "usd")
+    for _ in range(2):
+        print(next(usd_transactions, {}))
+
+    descriptions = transaction_descriptions(transactions)
+    for _ in range(5):
+        print(next(descriptions))
+
+    for card_number in card_number_generator(1, 5):
+        print(card_number)
